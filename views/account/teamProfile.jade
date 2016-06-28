@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+  form.form-horizontal.col-sm-4
+    h3 Team Profile
+    hr
+    .form-group
+      label.col-sm-3.control-label(for='gravatar') Picture
+      .col-sm-4
+        img(src="#{user.gravatar()}", class='profile', width='100', height='100')
+    .form-group
+      label.col-sm-3.control-label(for='email') Email
+      .col-sm-7
+        .control-label.pull-left
+          p= user.email
+    .form-group
+      label.col-sm-3.control-label(for='name') Name
+      .col-sm-7
+        .control-label.pull-left
+          p= user.profile.name
+    if(user.profile.gender != '')
+      .form-group
+        label.col-sm-3.control-label(for='gender') Gender
+        .col-sm-7
+          .control-label.pull-left
+            p= user.profile.gender
+    if(user.profile.location != '')
+      .form-group
+        label.col-sm-3.control-label(for='location') Location
+        .col-sm-7
+          .control-label.pull-left
+            p= user.profile.location
+    if(user.profile.website != '')
+      .form-group
+        label.col-sm-3.control-label(for='website') Website
+        .col-sm-7
+            .control-label.pull-left
+              p= user.profile.website
+  .col-xs-12.col-sm-7.pull-right
+    h3 Schedules
+    hr
+    .schedule-tile.col-xs-12.col-sm-3.col-sm-offset-1 test1
+    .schedule-tile.col-xs-12.col-sm-3.col-sm-offset-1 test2
+    .schedule-tile.col-xs-12.col-sm-3.col-sm-offset-1 test3
+  .col-xs-12.col-sm-7.pull-right
+    h3 Activity
+    hr
+

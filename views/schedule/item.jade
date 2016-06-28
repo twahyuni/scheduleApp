@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  .col-sm-3
+    h1 Title
+    p description
+    hr
+    .form-group
+      a.btn.btn-block.btn-default#createCard(data-toggle='popover' value='') create new card...
+    br
+    #external-events Card List
+      .fc-event.ui-draggable.ui-draggable-handle card 1
+  .col-sm-9
+    br
+    div#calendar

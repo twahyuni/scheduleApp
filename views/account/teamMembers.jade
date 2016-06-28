@@ -1,0 +1,43 @@
+extends ../layout
+
+block content
+  form.form-horizontal(action='/team/members', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .whitespace
+    .col-sm-3
+      .form-group
+          input.form-control(type='email', name='email', id='email', placeholder = "find user...")
+          button.btn.btn-block.btn-primary(type='submit')
+            i.fa.fa-user
+            | Add Member
+
+    .col-xs-12.col-sm-8.pull-right
+      .member-list-details.col-xs-12.col-sm-12
+        .col-xs-2.col-sm-1
+          img(src="#{user.gravatar()}", class='profile', width='30', height='30')
+        .col-xs-2.col-sm-7
+          p #{user.profile.name}
+        .col-xs-4.col-sm-2
+          button.btn.btn-default(type='submit')
+            b Status
+            &nbsp;
+            i.fa.fa-chevron-down
+        .col-xs-4.col-sm-2
+          button.btn.btn-default(type='submit')
+            i.fa.fa-remove
+            b Remove
+      .member-list-details.col-xs-12.col-sm-12
+        .col-xs-2.col-sm-1
+          img(src="#{user.gravatar()}", class='profile', width='30', height='30')
+        .col-xs-2.col-sm-7
+          p #{user.profile.name}
+        .col-xs-4.col-sm-2
+          button.btn.btn-default(type='submit')
+            b Status
+            &nbsp;
+            i.fa.fa-chevron-down
+        .col-xs-4.col-sm-2
+          button.btn.btn-default(type='submit')
+            i.fa.fa-remove
+            b Remove
+
