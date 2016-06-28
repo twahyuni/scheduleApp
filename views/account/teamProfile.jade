@@ -1,7 +1,7 @@
 extends ../layout
 
 block content
-  form.form-horizontal.col-sm-4
+  form.form-horizontal.col-sm-5
     h3 Team Profile
     hr
     .form-group
@@ -9,34 +9,26 @@ block content
       .col-sm-4
         img(src="#{user.gravatar()}", class='profile', width='100', height='100')
     .form-group
-      label.col-sm-3.control-label(for='email') Email
-      .col-sm-7
-        .control-label.pull-left
-          p= user.email
-    .form-group
       label.col-sm-3.control-label(for='name') Name
       .col-sm-7
         .control-label.pull-left
-          p= user.profile.name
-    if(user.profile.gender != '')
-      .form-group
-        label.col-sm-3.control-label(for='gender') Gender
-        .col-sm-7
+          p
+     .form-group
+      label.col-sm-3.control-label(for='name') Username
+      .col-sm-7
+        .control-label.pull-left
+          p
+    .form-group
+      label.col-sm-3.control-label(for='desc') Description
+      .col-sm-7
+        .control-label.pull-left
+          p
+    .form-group
+      label.col-sm-3.control-label(for='website') Website
+      .col-sm-7
           .control-label.pull-left
-            p= user.profile.gender
-    if(user.profile.location != '')
-      .form-group
-        label.col-sm-3.control-label(for='location') Location
-        .col-sm-7
-          .control-label.pull-left
-            p= user.profile.location
-    if(user.profile.website != '')
-      .form-group
-        label.col-sm-3.control-label(for='website') Website
-        .col-sm-7
-            .control-label.pull-left
-              p= user.profile.website
-  .col-xs-12.col-sm-7.pull-right
+            p
+  .col-xs-12.col-sm-7
     h3 Schedules
     hr
     .schedule-tile.col-xs-12.col-sm-3.col-sm-offset-1 test1

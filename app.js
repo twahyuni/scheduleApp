@@ -130,27 +130,26 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 
 app.get('/dashboard', passportConfig.isAuthenticated, userController.getDashboard);
 
+// app.get('/schedule/cards', scheduleController.getCardsInSchedule);
+
 app.get('/schedule', passportConfig.isAuthenticated, scheduleController.getSchedule);
+app.post('/schedule', passportConfig.isAuthenticated, scheduleController.postSchedule);
 app.get('/schedule/update/owner', passportConfig.isAuthenticated);
 app.get('/schedule/remove/card', passportConfig.isAuthenticated);
 app.post('/schedule/delete', passportConfig.isAuthenticated, scheduleController.postDeleteSchedule);
 
-
-app.get('/team/profile', passportConfig.isAuthenticated, teamController.getTeam);
+app.post('/team/profile', passportConfig.isAuthenticated, teamController.postTeam);
+app.get('/team/profile', passportConfig.isAuthenticated, teamController.getTeam)
 app.get('/team/account', passportConfig.isAuthenticated, teamController.getTeamSettings);
 app.get('/team/members', passportConfig.isAuthenticated, teamController.getTeamMembers);
 app.post('/team/members', passportConfig.isAuthenticated );
 app.post('/team/members/add', passportConfig.isAuthenticated );
 app.post('/team/members/remove', passportConfig.isAuthenticated );
 app.post('/team/members/update', passportConfig.isAuthenticated );
-app.post('/team/account/delete', passportConfig.isAuthenticated, teamController.postDeleteTeamAccount);
+app.post('/team/delete', passportConfig.isAuthenticated, teamController.postDeleteTeamAccount);
 
-app.post('/card', passportConfig.isAuthenticated);
-app.post('/card/update/title', passportConfig.isAuthenticated);
-app.post('/card/update/time', passportConfig.isAuthenticated);
-app.post('/card/update/date', passportConfig.isAuthenticated);
-app.post('/card/update/location', passportConfig.isAuthenticated);
-app.post('/card/update/description', passportConfig.isAuthenticated);
+app.post('/card', passportConfig.isAuthenticated, cardController.postCard);
+app.post('/card/update', passportConfig.isAuthenticated);
 app.post('/card/add/member', passportConfig.isAuthenticated);
 app.post('/card/move', passportConfig.isAuthenticated);
 app.post('/card/copy', passportConfig.isAuthenticated);

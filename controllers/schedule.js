@@ -1,18 +1,41 @@
 const async = require('async');
-const crypto = require('crypto');
 const passport = require('passport');
+const Schedule = require('../models/Schedule');
 const User = require('../models/User');
 
 // show schedule page
 exports.getSchedule = (req, res) => {
-  res.render('schedule/item', {
-    title: 'Schedule'
-  });
+  var query = req.query;
+  var _id = query.id;
+
+  if (_id) {
+    Schedule.findById(_id, function(err, schedule){
+      if (err) {
+        console.log(err);
+      }
+      res.render('schedule/item', {
+        title: 'Schedule',
+        schedule: schedule
+      });
+    })
+  } else {
+    res.render('schedule/item', {
+      title: 'Schedule'
+    });
+  }
 };
 
 // create new schedule
+exports.postSchedule = (req, res, next) => {
+  // create new schedule with id
 
-// remove card from schedule
+  // put the schedule id inside userSchema
+  const schedule = new Schedule({});
+
+  User.schedulesId.push();
+  req.flash('success', { msg: 'Schedule has been created.' });
+  res.redirect('/dashboard');
+};
 
 // update schedule's teamOwner
 
@@ -23,4 +46,12 @@ exports.postDeleteSchedule = (req, res, next) => {
     req.flash('info', { msg: 'Schedule has been deleted.' });
     res.redirect('/dashboard');
   });
+};
+
+//show card in schedule
+exports.getCardsInSchedule = (req, res, next) => {
+  Schedule.find({}, function(err, cardsArr){
+
+
+ });
 };

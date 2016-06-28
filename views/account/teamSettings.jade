@@ -1,3 +1,41 @@
 extends ../layout
 
 block content
+  .page-header
+    h3 Profile Settings
+
+  form.form-horizontal(action='/team/account', method='POST')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      label.col-sm-3.control-label(for='gravatar') Picture
+      .col-sm-4
+        img(src="#{user.gravatar()}", class='profile', width='100', height='100')
+    .form-group
+      label.col-sm-3.control-label(for='name') Name
+      .col-sm-7
+        input.form-control(type='text', name='name', id='name', value='')
+    .form-group
+      label.col-sm-3.control-label(for='desc') Description
+      .col-sm-7
+        input.form-control(type='text', name='desc', id='desc', value='')
+    .form-group
+      label.col-sm-3.control-label(for='website') Website
+      .col-sm-7
+        input.form-control(type='text', name='website', id='website', value='')
+    .form-group
+      .col-sm-offset-3.col-sm-4
+        button.btn.btn.btn-primary(type='submit')
+          i.fa.fa-pencil
+          | Update Team Profile
+
+  .page-header
+    h3 Delete Team
+
+  form.form-horizontal(action='/team/delete', method='POST')
+    .form-group
+      p.col-sm-offset-3.col-sm-4 You can delete this team, but keep in mind this action is irreversible.
+      input(type='hidden', name='_csrf', value=_csrf)
+      .col-sm-offset-3.col-sm-4
+        button.btn.btn-danger(type='submit')
+          i.fa.fa-trash
+          | Delete Team

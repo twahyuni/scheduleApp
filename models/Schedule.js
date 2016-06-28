@@ -3,8 +3,8 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 
 const scheduleSchema = new mongoose.Schema({
-  name: String,
-  desc: String,
+  name: { type: String, default: 'Title' },
+  desc: { type: String, default: 'Description' },
   idTeam: String,
   starred: Boolean,
   dateLastActivity: Date,
@@ -12,8 +12,12 @@ const scheduleSchema = new mongoose.Schema({
   url: String,
   shortUrl: String,
   labelNames: Array,
-  cards: Array,
-  memberCreatorId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  cards: {type: mongoose.Schema.Types.ObjectId, ref: 'Card'},
+  memberCreatorId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
+
+  teamsId: [{type: mongoose.Schema.Types.ObjectId, ref: 'Team'}],
+  membersId: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
+
 }, { timestamps: true });
 
 const Schedule = mongoose.model('Schedule', scheduleSchema);

@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema({
   status: String,
   url: String,
 
+  schedulesId: [{type: mongoose.Schema.Types.ObjectId, ref: 'Schedule'}],
+  teamsId: [{type: mongoose.Schema.Types.ObjectId, ref: 'Team'}],
+
   profile: {
     name: { type: String, default: '' },
     gender: { type: String, default: '' },

@@ -1,30 +1,19 @@
+//create card
+function createCard(){
+  }
+
 $(document).ready(function() {
-
-    $('#createSchedule').popover({
-        placement : 'bottom',
-        html : true,
-        title : 'Create Schedule <a href="#" class="close" data-dismiss="alert">×</a>',
-        content : '<div class="media form-group">'+
-        '<input type="text" placeholder="Name" class="form-control">' +
-        '<input type="text" placeholder="Description" class="form-control">' +
-        '<button type="submit" class="btn btn-primary">Go To Login »</button>' +
-        '</div>'
-    });
-
-    $('#createTeam').popover({
-        placement : 'bottom',
-        html : true,
-        title : 'Create Team <a href="#" class="close" data-dismiss="alert">×</a>',
-        content : '<div class="media">'+
-        '<input type="text" placeholder="Name" class="form-control">' +
-        '<input type="text" placeholder="Description" class="form-control">' +
-
-        '</div>'
-    });
-
+  // SCHEDULE PAGE
     $(document).on("click", ".popover .close" , function(e){
         $(this).parents(".popover").popover('hide');
     });
+
+    //when create card button click, create card
+
+    //when delete card click, remove card
+
+    //when
+
 
     //draggable to calendar
     $('#external-events .fc-event').each(function() {
@@ -52,6 +41,7 @@ $(document).ready(function() {
       defaultDate: '2016-06-12',
       selectable: true,
       selectHelper: true,
+      // edit this function so you can create card by clicking the calendar
       select: function(start, end) {
         var title = prompt('Event Title:');
         var eventData;
@@ -124,7 +114,16 @@ $(document).ready(function() {
           url: 'http://google.com/',
           start: '2016-06-28'
         }
-      ]
+      ],
+      // edit this event so it pop up with the card information
+      eventClick: function(calEvent, jsEvent, view) {
+
+        alert('Event: ' + calEvent.title);
+        alert('View: ' + view.name);
+        alert('Event: ' + calEvent.start);
+
+      }
+
     });
 
   });

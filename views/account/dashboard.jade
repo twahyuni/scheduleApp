@@ -10,16 +10,16 @@ block content
   .row
     .col-sm-12
       h4 My Schedule
-      .schedule-tile.col-xs-12.col-sm-3.col-sm-offset-1 test1
+      //- a(href="/dashboard?id=#{board._id}").schedule-tile.col-xs-12.col-sm-3.col-sm-offset-1 test1
       .schedule-tile.col-xs-12.col-sm-3.col-sm-offset-1 test2
       .schedule-tile.col-xs-12.col-sm-3.col-sm-offset-1 test3
       .schedule-tile.col-xs-12.col-sm-3.col-sm-offset-1 test4
       .schedule-tile.new-schedule.col-xs-12.col-sm-3.col-sm-offset-1
-        a#createSchedule(data-toggle='popover') create new schedule...
+        a create new schedule...
   br
   .row
     .col-sm-12
-      a.btn.btn-default#createTeam(data-toggle='popover') create new team...
+      a.btn.btn-default(href="/team/profile", method="POST") create new team...
 
 
 

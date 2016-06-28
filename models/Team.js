@@ -3,12 +3,14 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 
 const teamSchema = new mongoose.Schema({
-  name: String,
+  name: {type: String, default: '' },
   username: { type: String, unique: true },
   picture: { type: String, default: '' },
   website: { type: String, default: '' },
   desc: { type: String, default: '' },
-  members: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}]
+
+  membersId: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
+  teamsId: [{type: mongoose.Schema.Types.ObjectId, ref: 'Team'}]
 }, { timestamps: true });
 
 const Team = mongoose.model('Team', teamSchema);

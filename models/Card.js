@@ -5,11 +5,11 @@ const mongoose = require('mongoose');
 const cardSchema = new mongoose.Schema({
 
   dateLastActivity: Date,
+  title: { type: String, default: '' },
   desc: { type: String, default: '' },
   idBoard: String,
   idMembersVoted: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   idLabels: Array,
-  name: String,
   shortLink: String,
   shortUrl: String,
   url: String,
