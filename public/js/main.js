@@ -42,8 +42,7 @@ $(document).ready(function() {
 
     //when delete card click, remove card
 
-    //when
-
+    //update card
 
     //draggable to calendar
     $('#external-events .fc-event').each(function() {
