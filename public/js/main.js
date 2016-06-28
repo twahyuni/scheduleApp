@@ -1,14 +1,44 @@
 //create card
-function createCard(){
-  }
+function createSchedule(){
+  //404 forbidden, no CSRF token???
+  $.ajax({
+    url: '/schedule',
+    method: 'POST',
+    data: {'_csrf': $( "meta[name='csrf-token']").attr('content')},
+    success: function(response){
+      window.location.href='/schedule';
+      // $.ajax({
+      //   method: 'GET',
+      //   url:'/schedule',
+      // })
+    }
+  });
+}
+
+// function createCard() {
+//   $.ajax({
+//     url: '/card',
+//     data: {
+//     }
+//     method: 'POST',
+//     success: function(response){
+//       window.location.href='/schedule';
+//     }
+//   });
+//   //call the loop
+// }
 
 $(document).ready(function() {
   // SCHEDULE PAGE
     $(document).on("click", ".popover .close" , function(e){
-        $(this).parents(".popover").popover('hide');
+      $(this).parents(".popover").popover('hide');
     });
 
-    //when create card button click, create card
+    //when create schedule  click, create schedule
+    $('.createSchedule').on("click", createSchedule);
+
+    //when create card  click, create card
+    // $('.createCard').on("click", createCard);
 
     //when delete card click, remove card
 

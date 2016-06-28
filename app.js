@@ -131,7 +131,6 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 app.get('/dashboard', passportConfig.isAuthenticated, userController.getDashboard);
 
 // app.get('/schedule/cards', scheduleController.getCardsInSchedule);
-
 app.get('/schedule', passportConfig.isAuthenticated, scheduleController.getSchedule);
 app.post('/schedule', passportConfig.isAuthenticated, scheduleController.postSchedule);
 app.get('/schedule/update/owner', passportConfig.isAuthenticated);

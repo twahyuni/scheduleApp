@@ -27,21 +27,18 @@ exports.getSchedule = (req, res) => {
 
 // create new schedule
 exports.postSchedule = (req, res, next) => {
-  // create new schedule with id
-
-  // put the schedule id inside userSchema
   const schedule = new Schedule({});
-
-  User.schedulesId.push();
-  req.flash('success', { msg: 'Schedule has been created.' });
-  res.redirect('/dashboard');
+  schedule.save(function() {
+    req.flash('success', { msg: 'Schedule has been created.' });
+    res.send({redirect:'/schedule'});
+  });
+  User.schedulesId.push(schedule);
 };
 
-// update schedule's teamOwner
 
 // delete team
 exports.postDeleteSchedule = (req, res, next) => {
-  Schedule.remove({ _id: req.schedule.id }, (err) => {
+  Schedule.remove({ _id: req.schedule._id }, (err) => {
     if (err) { return next(err); }
     req.flash('info', { msg: 'Schedule has been deleted.' });
     res.redirect('/dashboard');
