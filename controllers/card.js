@@ -22,8 +22,7 @@ exports.postCard = (req, res, next) => {
       req.flash('error', { msg: err});
     }
 
-    // error cannot find id of  undefined ????
-    Schedule.findOne(req.body.schedule._id, function(err, schedule){
+    Schedule.findOne(req.schedule._id, function(err, schedule){
       schedule.cards.push(card._id);
       schedule.save(function(err){
         req.flash('success', { msg: 'Card created!' });
@@ -42,11 +41,11 @@ exports.postCard = (req, res, next) => {
 };
 
 //show card
-// exports.getCards = (req, res) => {
-//   //loop through the cards array of that schedule
-//   var cards = Card.find();
-//   res.render(cards);
-// }
+exports.getCardsList = (req, res) => {
+ Card.find(function(err, docs){
+    res.json(docs);
+  });
+};
 
 
 // copy card to another schedule

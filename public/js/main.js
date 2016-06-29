@@ -1,18 +1,58 @@
-//create card
+//create schedule
 function createSchedule(){
-  //404 forbidden, no CSRF token???
+  //404 forbidden, use CSRF token
   $.ajax({
     url: '/schedule',
     method: 'POST',
     data: {'_csrf': $( "meta[name='csrf-token']").attr('content')},
     success: function(response){
       window.location.href='/schedule';
-      // $.ajax({
-      //   method: 'GET',
-      //   url:'/schedule',
-      // })
     }
   });
+}
+//delete schedule
+// function deleteSchedule(){
+//   //ajax method delete get the id????
+//   $.ajax({
+//     url: '/schedule/delete',
+//     method: 'DELETE',
+//     data: {'_csrf': $( "meta[name='csrf-token']").attr('content')},
+//     success: function(response){
+//       window.location.href='/dashboard';
+//     }
+//   });
+// }
+
+//generate schedule
+function generateSchedule(){
+
+}
+
+//edit schedule info
+function editScheduleInfo(e){
+  var el = e.target,
+      enter = e.which == 13,
+      input = el.nodeName != 'INPUT' && el.nodeName != 'TEXTAREA';
+  if (input) {
+    if (enter) {
+      // save
+      var name  = $('#scheduleTitle').text();
+      var desc = $('#scheduleDescription').text();
+      var data  = el.innerHTML;
+
+      // how do i put query id in url??
+      $.ajax({
+        url: '/schedule?=' + req.body._id,
+        data: {name: name, desc: desc},
+        type: 'PUT',
+        success: function(){
+          alert('updated');
+        }
+      });
+
+      $(el).blur();
+    }
+  }
 }
 
 var MaxInputs = 100;
@@ -47,6 +87,7 @@ function createEvent() {
 //   $.ajax({
 //     url: '/card',
 //     data: {
+
 //     }
 //     method: 'POST',
 //     success: function(response){
@@ -65,6 +106,12 @@ $(document).ready(function() {
     //when create schedule  click, create schedule
     $('.createSchedule').on("click", createSchedule);
 
+    //when delete shedule click, delete schedule
+    // $('.deleteSchedule').on("click", deleteSchedule);
+
+    //when title and description key up, update schedule db
+    $(document).keyup(editScheduleInfo);
+
     //when create card  click, create card
     // $('.createCard').on("click", createCard);
     $('#create-event').on("click", createEvent);
@@ -73,20 +120,7 @@ $(document).ready(function() {
 
     //update card
 
-    // //draggable to calendar
-    // $('#external-events .fc-event').each(function() {
-    //   $(this).data('event', {
-    //     title: $.trim($(this).text()),
-    //     stick: true
-    //   });
-
-    //   $(this).draggable({
-    //     zIndex: 999,
-    //     revert: true,
-    //     revertDuration: 0
-    //   });
-
-    //draggable to card list???
+    //draggable to card list
     var isEventOverDiv = function(x, y) {
     var external_events = $( '#external-events' );
     var offset = external_events.offset();

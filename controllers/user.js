@@ -4,6 +4,19 @@ const nodemailer = require('nodemailer');
 const passport = require('passport');
 const User = require('../models/User');
 
+exports.getUserList = (req, res) => {
+ User.find(function(err, docs){
+    res.json(docs);
+  });
+};
+
+exports.getUserActive = (req, res) => {
+ User.find(req.user._id , function(err, docs){
+    res.json(docs);
+  });
+};
+
+
 /**
  * GET /login
  * Login page.

@@ -2,9 +2,13 @@ extends ../layout
 
 block content
   .col-sm-3
-    h1#scheduleTitle(contenteditable="true", name='scheduleTitle', value='') Title
-    p#scheduleDescription(contenteditable="true" , name='scheduleDescription', value='') description
+    h1#scheduleTitle(contenteditable="true", name='scheduleTitle')
+    //- #{schedule.name} do i put different link for new schedule and schedule it owned
+    p#scheduleDescription(contenteditable="true" , name='scheduleDescription')
+    //- #{schedule.desc}
     hr
+
+    //- ccannot post card why
     button.btn.btn-block.btn-default#createCard(data-toggle='modal', data-target=".myCard" value='') create new card...
     .modal.fade.myCard(tabindex="-1", role="dialog", aria-labelledby='myModalLabel')
       .modal-dialog(role="document")
@@ -19,26 +23,26 @@ block content
               .form-group
                 label.col-sm-3.control-label(for='title') Title
                 .col-sm-8
-                  input.form-control(type='text', name='ncTitle', id='ncTitle', value='', placeholder='Title', required)
+                  input.form-control(type='text', name='ncTitle', id='ncTitle', placeholder='Title', required)
               .form-group
                 label.col-sm-3.control-label(for='desc') Description
                 .col-sm-8
-                  input.form-control(type='text', name='ncDesc', id='ncDesc', value='', placeholder='Description')
+                  input.form-control(type='text', name='ncDesc', id='ncDesc', placeholder='Description')
               .form-group
                 label.col-sm-3.control-label(for='date') Date
                 .col-sm-4
-                  input.form-control(type='date', name='ncStartDate', id='ncStartDate', value='', required)
+                  input.form-control(type='date', name='ncStartDate', id='ncStartDate', required)
                 .col-sm-4
-                  input.form-control(type='date', name='ncEndDate', id='ncEndDate', value='')
+                  input.form-control(type='date', name='ncEndDate', id='ncEndDate')
               .form-group
                 label.col-sm-3.control-label(for='time') Time
                 .col-sm-4
-                  input.form-control(type='time', name='ncStartTime', id='startTime', value='')
+                  input.form-control(type='time', name='ncStartTime', id='startTime')
                 .col-sm-4
-                  input.form-control(type='time', name='ncEndTime', id='endTime', value='')
+                  input.form-control(type='time', name='ncEndTime', id='endTime')
               .form-group
                 .col-sm-offset-3.col-sm-8
-                  button.btn-block.btn.btn-primary(type='submit' id='create-event')
+                  button.btn-block.btn.btn-primary(type='submit', id='#create-event')
                     i.fa.fa-pencil
                     | Create Card
           .modal-footer
@@ -94,3 +98,7 @@ block content
   .col-sm-9
     br
     div#calendar
+
+  .col-sm-2.pull-right
+    br
+    button.btn.btn-block.btn-danger.deleteSchedule.pull-right delete schedule

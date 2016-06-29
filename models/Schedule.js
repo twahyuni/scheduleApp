@@ -12,7 +12,7 @@ const scheduleSchema = new mongoose.Schema({
   url: String,
   shortUrl: String,
   labelNames: Array,
-  cards: {type: mongoose.Schema.Types.ObjectId, ref: 'Card'},
+  cards: [{type: mongoose.Schema.Types.ObjectId, ref: 'Card'}],
   memberCreatorId: {type: mongoose.Schema.Types.ObjectId, ref: 'User'},
 
   teamsId: [{type: mongoose.Schema.Types.ObjectId, ref: 'Team'}],

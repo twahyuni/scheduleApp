@@ -130,12 +130,18 @@ app.get('/account/unlink/:provider', passportConfig.isAuthenticated, userControl
 
 app.get('/dashboard', passportConfig.isAuthenticated, userController.getDashboard);
 
-// app.get('/schedule/cards', scheduleController.getCardsInSchedule);
+//JSON
+app.get('/user/list', userController.getUserList);
+app.get('/user/active', passportConfig.isAuthenticated, userController.getUserActive);
+app.get('/schedule/list', passportConfig.isAuthenticated, scheduleController.getScheduleList);
+app.get('/card/list', passportConfig.isAuthenticated, cardController.getCardsList);
+
+app.get('/scheduleList', passportConfig.isAuthenticated, scheduleController.getScheduleLists)
 app.get('/schedule', passportConfig.isAuthenticated, scheduleController.getSchedule);
 app.post('/schedule', passportConfig.isAuthenticated, scheduleController.postSchedule);
 app.get('/schedule/update/owner', passportConfig.isAuthenticated);
 app.get('/schedule/remove/card', passportConfig.isAuthenticated);
-app.post('/schedule/delete', passportConfig.isAuthenticated, scheduleController.postDeleteSchedule);
+app.delete('/schedule/delete', passportConfig.isAuthenticated, scheduleController.postDeleteSchedule);
 
 app.post('/team/profile', passportConfig.isAuthenticated, teamController.postTeam);
 app.get('/team/profile', passportConfig.isAuthenticated, teamController.getTeam)
@@ -147,7 +153,6 @@ app.post('/team/members/remove', passportConfig.isAuthenticated );
 app.post('/team/members/update', passportConfig.isAuthenticated );
 app.post('/team/delete', passportConfig.isAuthenticated, teamController.postDeleteTeamAccount);
 
-// app.get('/card/list', passportConfig.isAuthenticated, cardController.getCards);
 app.post('/card', passportConfig.isAuthenticated, cardController.postCard);
 app.post('/card/update', passportConfig.isAuthenticated);
 app.post('/card/add/member', passportConfig.isAuthenticated);
