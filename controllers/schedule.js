@@ -31,7 +31,8 @@ exports.postSchedule = (req, res, next) => {
 
   // put the schedule id inside userSchema
   const schedule = new Schedule({});
-  schedule.save(function() {    // User.schedulesId.push();
+  schedule.save(function() {
+   // User.schedulesId.push();
     req.flash('success', { msg: 'Schedule has been created.' });
     res.send({redirect:'/schedule'});
   });

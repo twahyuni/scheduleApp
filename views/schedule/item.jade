@@ -19,17 +19,17 @@ block content
               .form-group
                 label.col-sm-3.control-label(for='title') Title
                 .col-sm-8
-                  input.form-control(type='text', name='ncTitle', id='title', value='', placeholder='Title', required)
+                  input.form-control(type='text', name='ncTitle', id='ncTitle', value='', placeholder='Title', required)
               .form-group
                 label.col-sm-3.control-label(for='desc') Description
                 .col-sm-8
-                  input.form-control(type='text', name='ncDesc', id='desc', value='', placeholder='Description')
+                  input.form-control(type='text', name='ncDesc', id='ncDesc', value='', placeholder='Description')
               .form-group
                 label.col-sm-3.control-label(for='date') Date
                 .col-sm-4
-                  input.form-control(type='date', name='ncStartDate', id='startDate', value='', required)
+                  input.form-control(type='date', name='ncStartDate', id='ncStartDate', value='', required)
                 .col-sm-4
-                  input.form-control(type='date', name='ncEndDate', id='endDate', value='')
+                  input.form-control(type='date', name='ncEndDate', id='ncEndDate', value='')
               .form-group
                 label.col-sm-3.control-label(for='time') Time
                 .col-sm-4
@@ -38,56 +38,59 @@ block content
                   input.form-control(type='time', name='ncEndTime', id='endTime', value='')
               .form-group
                 .col-sm-offset-3.col-sm-8
-                  button.btn-block.btn.btn-primary(type='submit')
+                  button.btn-block.btn.btn-primary(type='submit' id='create-event')
                     i.fa.fa-pencil
                     | Create Card
           .modal-footer
             button.btn.btn-default(type="button", data-dismiss="modal") Close
     br
-    #external-events Card List
-      .fc-event.ui-draggable.ui-draggable-handle(data-toggle='modal', data-target=".userCard" value='')  card 1
+    #external-events
+      #external-events-listing
+        h4 Events
 
-      .modal.fade.userCard(tabindex="-1", role="dialog", aria-labelledby='myModalLabel')
-        .modal-dialog(role="document")
-          .modal-content
-            .modal-header
-              button.close(type="button", data-dismiss="modal", aria-label="Close")
-                span(aria-hidden="true") &times;
-              h4.modal-title New Card
-            .modal-body
-              form.form-horizontal(action='/card', method='POST')
-                input(type='hidden', name='_csrf', value=_csrf)
-                .form-group
-                  label.col-sm-3.control-label(for='title') Title
-                  .col-sm-8
-                    input.form-control(type='text', name='title', id='title', value='', placeholder='Title', required)
-                .form-group
-                  label.col-sm-3.control-label(for='desc') Description
-                  .col-sm-8
-                    input.form-control(type='text', name='desc', id='desc', value='', placeholder='Description')
-                .form-group
-                  label.col-sm-3.control-label(for='date') Date
-                  .col-sm-4
-                    input.form-control(type='date', name='startDate', id='startDate', value='', required)
-                  .col-sm-4
-                    input.form-control(type='date', name='endDate', id='endDate', value='')
-                .form-group
-                  label.col-sm-3.control-label(for='time') Time
-                  .col-sm-4
-                    input.form-control(type='time', name='startTime', id='startTime', value='')
-                  .col-sm-4
-                    input.form-control(type='time', name='endTime', id='endTime', value='')
-                .form-group
-                  .col-sm-offset-3.col-sm-8
-                    button.btn.btn-primary(type='submit')
-                      i.fa.fa-pencil
-                      | Update Card
-                    | &nbsp;
-                    button.btn.btn-danger(type='submit')
-                      i.fa.fa-remove
-                      | Delete Card
-            .modal-footer
-              button.btn.btn-default(type="button", data-dismiss="modal") Close
+      //- .col-sm-12.fc-event.ui-draggable.ui-draggable-handle(data-toggle='modal', data-target=".userCard" value='')  card 1
+
+      //- .modal.fade.userCard(tabindex="-1", role="dialog", aria-labelledby='myModalLabel')
+      //-   .modal-dialog(role="document")
+      //-     .modal-content
+      //-       .modal-header
+      //-         button.close(type="button", data-dismiss="modal", aria-label="Close")
+      //-           span(aria-hidden="true") &times;
+      //-         h4.modal-title Card
+      //-       .modal-body
+      //-         form.form-horizontal(action='/card', method='POST')
+      //-           input(type='hidden', name='_csrf', value=_csrf)
+      //-           .form-group
+      //-             label.col-sm-3.control-label(for='title') Title
+      //-             .col-sm-8
+      //-               input.form-control(type='text', name='title', id='title', value='', placeholder='Title', required)
+      //-           .form-group
+      //-             label.col-sm-3.control-label(for='desc') Description
+      //-             .col-sm-8
+      //-               input.form-control(type='text', name='desc', id='desc', value='', placeholder='Description')
+      //-           .form-group
+      //-             label.col-sm-3.control-label(for='date') Date
+      //-             .col-sm-4
+      //-               input.form-control(type='date', name='startDate', id='startDate', value='', required)
+      //-             .col-sm-4
+      //-               input.form-control(type='date', name='endDate', id='endDate', value='')
+      //-           .form-group
+      //-             label.col-sm-3.control-label(for='time') Time
+      //-             .col-sm-4
+      //-               input.form-control(type='time', name='startTime', id='startTime', value='')
+      //-             .col-sm-4
+      //-               input.form-control(type='time', name='endTime', id='endTime', value='')
+      //-           .form-group
+      //-             .col-sm-offset-3.col-sm-8
+      //-               button.btn.btn-primary(type='submit')
+      //-                 i.fa.fa-pencil
+      //-                 | Update Card
+      //-               | &nbsp;
+      //-               button.btn.btn-danger(type='submit')
+      //-                 i.fa.fa-remove
+      //-                 | Delete Card
+      //-       .modal-footer
+      //-         button.btn.btn-default(type="button", data-dismiss="modal") Close
   .col-sm-9
     br
     div#calendar

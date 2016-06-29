@@ -42,27 +42,17 @@ exports.postCard = (req, res, next) => {
 };
 
 //show card
-exports.showCard = (req, res) => {
-  //loop through the cards array of that schedule
+// exports.getCards = (req, res) => {
+//   //loop through the cards array of that schedule
+//   var cards = Card.find();
+//   res.render(cards);
+// }
 
-}
-// add attachment to card
-
-// add labels to card
-
-// add member to card
-
-// add vote to card
 
 // copy card to another schedule
 
 // move card to another schedule
 
-// remove attachment from card
-
-// remove labels from card
-
-// remove vote from card
 
 // update card date
 

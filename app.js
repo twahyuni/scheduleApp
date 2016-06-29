@@ -147,6 +147,7 @@ app.post('/team/members/remove', passportConfig.isAuthenticated );
 app.post('/team/members/update', passportConfig.isAuthenticated );
 app.post('/team/delete', passportConfig.isAuthenticated, teamController.postDeleteTeamAccount);
 
+// app.get('/card/list', passportConfig.isAuthenticated, cardController.getCards);
 app.post('/card', passportConfig.isAuthenticated, cardController.postCard);
 app.post('/card/update', passportConfig.isAuthenticated);
 app.post('/card/add/member', passportConfig.isAuthenticated);
