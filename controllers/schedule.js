@@ -3,23 +3,21 @@ const passport = require('passport');
 const Schedule = require('../models/Schedule');
 const User = require('../models/User');
 
-
 exports.getScheduleList = (req, res) => {
- Schedule.find(function(err, docs){
-    res.json(docs);
-  });
-};
+ // Schedule.find(function(err, docs){
+ //    res.json(docs);
+ //  });
+ // .findOne(req.user._id)
+ // {_id: ObjectId(req.schedule._id)}
+ Schedule
+    .find()
+    .populate('cards')
+    .exec(function(err, schedule) {
+        var opts = { path: 'cards', model: 'Card' }
 
-// Populate all the schedule in a user and ... show schedule page?
-
-//the path for this function is /scheduleList. this is a test.
-exports.getScheduleLists = (req, res) => {
-  User.findOne(req.user._id).exec(function(err, user) {
-    var opts = { path: 'schedulesId', model: 'Schedule' }
-
-    User.populate(user, opts, function (err, user) {
-      res.json(user);
-    })
+       Schedule.populate(schedule, opts, function (err, schedule) {
+         res.json(schedule);
+       })
 
   })
 };
@@ -29,15 +27,22 @@ exports.getSchedule = (req, res) => {
   var _id = query.id;
 
   if (_id) {
-    Schedule.findById(_id, function(err, schedule){
-      if (err) {
-        console.log(err);
-      }
-      res.render('schedule/item', {
-        title: 'Schedule',
-        schedule: schedule
-      });
-    })
+    Schedule
+      .findById(_id)
+      .populate('cards')
+      .exec(function(err, schedule) {
+        if (err) {
+          console.log(err);
+        }
+        var opts = { path: 'cards', model: 'Card' }
+
+        Schedule.populate(schedule, opts, function (err, schedule) {
+            res.render('schedule/item', {
+              title: 'Schedule',
+              schedule: schedule
+            });
+          })
+       })
   } else {
     res.render('schedule/item', {
       title: 'Schedule'
@@ -47,7 +52,10 @@ exports.getSchedule = (req, res) => {
 
 // create new schedule
 exports.postSchedule = (req, res, next) => {
-  const schedule = new Schedule({  });
+  const schedule = new Schedule({
+      membersId: req.user._id,
+      memberCreatorId: req.user._id
+   });
   schedule.save(function(err, schedule) {
     if(err){
       req.flash('error', { msg: err});
@@ -57,27 +65,51 @@ exports.postSchedule = (req, res, next) => {
       user.schedulesId.push(schedule._id);
       user.save(function(err){
         req.flash('success', { msg: 'Schedule has been created!' });
-        res.redirect('/schedule');
+
+        // add res JSON and attached to response in createSchedule function , main.js file
+        res.json(schedule._id);
       })
+
     });
   });
 };
-
 // update schedule's teamOwner
 
-// delete team
-exports.postDeleteSchedule = (req, res, next) => {
-  Schedule.remove({ _id: req.schedule.id }, (err) => {
+// delete schedule
+exports.deleteSchedule = (req, res, next) => {
+  // Schedule.remove({ _id: req.params.id }, (err) => {
+  //   if (err) { return next(err); }
+  //   req.flash('info', { msg: 'Schedule has been deleted.' });
+  // });
+
+
+  Schedule.findOne({ _id: req.params.id }, (err, schedule) => {
     if (err) { return next(err); }
+
+    var target = req.params.id;
+
+    User.findById(schedule.membersId, function(err, user){
+
+      user.findOneAndUpdate({schedulesId: target}, (err, scheduleId) => {
+        if (err) { return next(err); }
+        console.log(scheduleId);
+      });
+
+    });
+
+    // schedule.remove();
     req.flash('info', { msg: 'Schedule has been deleted.' });
-    res.redirect('/dashboard');
   });
 };
 
-//show card in schedule
-exports.getCardsInSchedule = (req, res, next) => {
-  Schedule.find({}, function(err, cardsArr){
+//update schedule
+exports.putSchedule = (req, res, next) => {
+  Schedule.findById(req.params.id, (err, schedule) => {
+    if (err) { return next(err); }
 
+    schedule.name = req.body.name;
+    schedule.desc = req.body.desc;
+    schedule.save();
 
- });
+    });
 };

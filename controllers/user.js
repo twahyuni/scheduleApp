@@ -136,9 +136,25 @@ exports.getAccount = (req, res) => {
  * Dashboard page.
  */
 exports.getDashboard = (req, res) => {
-  res.render('account/dashboard', {
-    title: 'User Dashboard'
-  });
+  User
+    .findById(req.user._id)
+    .populate('schedulesId')
+    .exec(function(err, user) {
+      if (err) {
+        console.log(err);
+      }
+      var opts = { path: 'schedulesId', model: 'Schedule' }
+
+      User.populate(user, opts, function (err, user) {
+          res.render('account/dashboard', {
+            title: 'Schedule',
+            user: user
+          });
+        })
+     })
+  // res.render('account/dashboard', {
+  //   title: 'User Dashboard'
+  // });
 };
 
 /**

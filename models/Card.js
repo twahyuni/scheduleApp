@@ -25,6 +25,7 @@ const cardSchema = new mongoose.Schema({
   endTime: Date,
   startDate: Date,
   endDate: Date,
+  scheduleId:  {type: mongoose.Schema.Types.ObjectId, ref: 'Schedule'},
   idMembers: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   labels: [
     {

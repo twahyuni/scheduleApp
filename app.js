@@ -136,12 +136,14 @@ app.get('/user/active', passportConfig.isAuthenticated, userController.getUserAc
 app.get('/schedule/list', passportConfig.isAuthenticated, scheduleController.getScheduleList);
 app.get('/card/list', passportConfig.isAuthenticated, cardController.getCardsList);
 
-app.get('/scheduleList', passportConfig.isAuthenticated, scheduleController.getScheduleLists)
 app.get('/schedule', passportConfig.isAuthenticated, scheduleController.getSchedule);
+
+app.put('/schedule/:id', passportConfig.isAuthenticated, scheduleController.putSchedule);
+
 app.post('/schedule', passportConfig.isAuthenticated, scheduleController.postSchedule);
 app.get('/schedule/update/owner', passportConfig.isAuthenticated);
 app.get('/schedule/remove/card', passportConfig.isAuthenticated);
-app.delete('/schedule/delete', passportConfig.isAuthenticated, scheduleController.postDeleteSchedule);
+app.delete('/schedule/delete/:id', passportConfig.isAuthenticated, scheduleController.deleteSchedule);
 
 app.post('/team/profile', passportConfig.isAuthenticated, teamController.postTeam);
 app.get('/team/profile', passportConfig.isAuthenticated, teamController.getTeam)

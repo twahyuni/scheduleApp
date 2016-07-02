@@ -8847,6 +8847,15 @@ footer {
   padding: 10px 0 10px 0;
   border-bottom: 1px solid #d6dadc; }
 
+#external-events-listing {
+  overflow-y: scroll;
+  overflow-x: hidden;
+  height: 460px; }
+
+.fc-event {
+  margin: 1px;
+  padding: 10px; }
+
 textarea {
   resize: vertical; }
 
