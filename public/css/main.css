@@ -8808,8 +8808,8 @@ footer {
     margin-bottom: 0; }
 
 #homeBG {
-  height: 50px;
-  width: 100%;
+  margin-top: 7%;
+  height: 100%;
   background: linear-gradient(141deg, #0fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
   color: white;
   opacity: 0.95; }

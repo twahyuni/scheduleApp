@@ -137,12 +137,10 @@ app.get('/schedule/list', passportConfig.isAuthenticated, scheduleController.get
 app.get('/card/list', passportConfig.isAuthenticated, cardController.getCardsList);
 
 app.get('/schedule', passportConfig.isAuthenticated, scheduleController.getSchedule);
-
 app.put('/schedule/:id', passportConfig.isAuthenticated, scheduleController.putSchedule);
-
 app.post('/schedule', passportConfig.isAuthenticated, scheduleController.postSchedule);
-app.get('/schedule/update/owner', passportConfig.isAuthenticated);
-app.get('/schedule/remove/card', passportConfig.isAuthenticated);
+// app.get('/schedule/update/owner', passportConfig.isAuthenticated);
+// app.get('/schedule/remove/card', passportConfig.isAuthenticated);
 app.delete('/schedule/delete/:id', passportConfig.isAuthenticated, scheduleController.deleteSchedule);
 
 app.post('/team/profile', passportConfig.isAuthenticated, teamController.postTeam);
@@ -157,15 +155,15 @@ app.post('/team/delete', passportConfig.isAuthenticated, teamController.postDele
 
 app.post('/card', passportConfig.isAuthenticated, cardController.postCard);
 app.post('/card/update', passportConfig.isAuthenticated);
-app.post('/card/add/member', passportConfig.isAuthenticated);
-app.post('/card/move', passportConfig.isAuthenticated);
-app.post('/card/copy', passportConfig.isAuthenticated);
-app.post('/card/add/label', passportConfig.isAuthenticated);
-app.post('/card/add/attachment', passportConfig.isAuthenticated);
-app.post('/card/add/vote', passportConfig.isAuthenticated);
-app.post('/card/remove/label', passportConfig.isAuthenticated);
-app.post('/card/remove/attachment', passportConfig.isAuthenticated);
-app.post('/card/remove/vote', passportConfig.isAuthenticated);
+// app.post('/card/add/member', passportConfig.isAuthenticated);
+// app.post('/card/move', passportConfig.isAuthenticated);
+// app.post('/card/copy', passportConfig.isAuthenticated);
+// app.post('/card/add/label', passportConfig.isAuthenticated);
+// app.post('/card/add/attachment', passportConfig.isAuthenticated);
+// app.post('/card/add/vote', passportConfig.isAuthenticated);
+// app.post('/card/remove/label', passportConfig.isAuthenticated);
+// app.post('/card/remove/attachment', passportConfig.isAuthenticated);
+// app.post('/card/remove/vote', passportConfig.isAuthenticated);
 app.post('/card/delete', passportConfig.isAuthenticated, cardController.postDeleteCard);
 
 /**

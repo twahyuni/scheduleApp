@@ -7,8 +7,6 @@ const Schedule = require('../models/Schedule');
 var moment = require('moment');
 moment().format();
 
-
-
 // create new card
 exports.postCard = (req, res, next) => {
   const card = new Card({
@@ -46,13 +44,12 @@ exports.getCardsList = (req, res) => {
     //think a way to convert the date into date only and time only
     res.json(docs);
 
+
+    // var dateString = moment.utc(value).format("YYYY-MM-DD");
+    // console.log(dateString);
+
   });
 };
-
-// copy card to another schedule
-
-// move card to another schedule
-
 
 // update card date, description, location, time, title
 
