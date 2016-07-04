@@ -77,29 +77,29 @@ exports.postSchedule = (req, res, next) => {
 
 // delete schedule
 exports.deleteSchedule = (req, res, next) => {
-  // Schedule.remove({ _id: req.params.id }, (err) => {
-  //   if (err) { return next(err); }
-  //   req.flash('info', { msg: 'Schedule has been deleted.' });
-  // });
-
-
-  Schedule.findOne({ _id: req.params.id }, (err, schedule) => {
+  Schedule.remove({ _id: req.params.id }, (err) => {
     if (err) { return next(err); }
-
-    var target = req.params.id;
-
-    User.findById(schedule.membersId, function(err, user){
-
-      user.findOneAndUpdate({schedulesId: target}, (err, scheduleId) => {
-        if (err) { return next(err); }
-        console.log(scheduleId);
-      });
-
-    });
-
-    // schedule.remove();
     req.flash('info', { msg: 'Schedule has been deleted.' });
   });
+
+
+  // Schedule.findOne({ _id: req.params.id }, (err, schedule) => {
+  //   if (err) { return next(err); }
+
+  //   var target = req.params.id;
+
+  //   User.findById(schedule.membersId, function(err, user){
+
+  //     user.findOneAndUpdate({schedulesId: target}, (err, scheduleId) => {
+  //       if (err) { return next(err); }
+  //       console.log(scheduleId);
+  //     });
+
+  //   });
+
+  //   // schedule.remove();
+  //   req.flash('info', { msg: 'Schedule has been deleted.' });
+  // });
 };
 
 //update schedule
